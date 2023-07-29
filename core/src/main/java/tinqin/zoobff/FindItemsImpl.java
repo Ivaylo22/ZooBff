@@ -1,5 +1,6 @@
 package tinqin.zoobff;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tinqin.zoobff.model.finditems.FindItems;
 import tinqin.zoobff.model.finditems.FindItemsRequest;
@@ -12,19 +13,15 @@ import tinqin.zoostore.model.item.getitem.GetItemResponse;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class FindItemsImpl implements FindItems {
     private final ZooStoreRestClient storeRestClient;
     private final ZooStorageRestClient storageRestClient;
 
-    public FindItemsImpl(ZooStoreRestClient storeRestClient, ZooStorageRestClient storageRestClient) {
-        this.storeRestClient = storeRestClient;
-        this.storageRestClient = storageRestClient;
-    }
-
     @Override
     public FindItemsResponse process(FindItemsRequest input) {
         UUID storageId = input.getStorageId();
-        GetStorageResponse storage = storageRestClient.getStorate(storageId);
+        GetStorageResponse storage = storageRestClient.getStorage(storageId);
 
         UUID itemId = storage.getItemId();
         GetItemResponse item = storeRestClient.getItemById(itemId);

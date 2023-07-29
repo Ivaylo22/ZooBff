@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "tinqin.zoobff.controllers")
+@ComponentScan(basePackages = "tinqin.zoobff.model")
 public class ZooBffApplication {
 
     public static void main(String[] args) {
