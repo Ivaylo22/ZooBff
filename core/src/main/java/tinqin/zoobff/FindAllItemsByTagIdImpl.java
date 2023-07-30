@@ -9,18 +9,13 @@ import tinqin.zoobff.model.finditemsbytagid.FindAllItemsByTagIdRequest;
 import tinqin.zoobff.model.finditemsbytagid.FindAllItemsByTagIdResponse;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.data.Storage;
-import tinqin.zoostorage.model.getinfobyid.GetInfoByIdResponse;
 import tinqin.zoostore.ZooStoreRestClient;
 import tinqin.zoostore.data.Item;
-import tinqin.zoostore.model.item.ItemDto;
 import tinqin.zoostore.model.item.getitem.GetItemResponse;
-import tinqin.zoostore.model.item.getitembytagid.GetItemByTagIdResponse;
 
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +30,7 @@ public class FindAllItemsByTagIdImpl implements FindAllItemsByTagId {
         FindAllItemsByTagIdResponse response = new FindAllItemsByTagIdResponse();
         List<FullItemInfoDto> itemsInfo = new ArrayList<>();
 
-        List<Item> items = storeRestClient.getItemsByTagId(tagId).getItems();
+        List<Item> items = storeRestClient.getItemsByTagId(tagId).getItems().getContent();
 
 
         for (Item item: items) {
