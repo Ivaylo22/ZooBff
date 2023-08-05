@@ -1,16 +1,15 @@
-package tinqin.zoobff.model.finditems;
+package tinqin.zoobff.data.bff.salecart;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import tinqin.zoobff.operations.OperationResult;
 
-import java.util.UUID;
-
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindItemsResponse implements OperationResult {
-    private UUID storageId;
-    private UUID itemId;
+public class SellCartResponse implements OperationResult {
+    private String message = "Cart is sold";
 }

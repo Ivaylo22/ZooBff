@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>tinqin.zoobff</groupId>
   <artifactId>domain</artifactId>
-  <version>0.1.8-SNAPSHOT</version>
+  <version>0.1.9-SNAPSHOT</version>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -15,13 +15,13 @@
     <dependency>
       <groupId>tinqin.zoostore</groupId>
       <artifactId>restexport</artifactId>
-      <version>0.1.8-SNAPSHOT</version>
+      <version>0.1.9-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>tinqin.storage</groupId>
       <artifactId>restexport</artifactId>
-      <version>0.1.8-SNAPSHOT</version>
+      <version>0.1.9-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

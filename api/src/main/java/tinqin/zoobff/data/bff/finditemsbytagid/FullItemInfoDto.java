@@ -1,18 +1,15 @@
-package tinqin.zoobff.model;
+package tinqin.zoobff.data.bff.finditemsbytagid;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import tinqin.zoostore.data.Item;
-import tinqin.zoostore.data.Multimedia;
-import tinqin.zoostore.data.Tag;
-import tinqin.zoostore.data.Vendor;
-
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class FullItemInfoDto {
     private Item item;
     private Integer quantity;

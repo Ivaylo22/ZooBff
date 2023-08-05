@@ -1,7 +1,6 @@
-package tinqin.zoobff.model.finditemsbytagid;
+package tinqin.zoobff.data.bff.finditemsbytagid;
 
-import tinqin.zoobff.model.finditems.FindItemsRequest;
-import tinqin.zoobff.model.finditems.FindItemsResponse;
+import tinqin.zoobff.data.bff.FindAllItemsByTagIdRequest;
 import tinqin.zoobff.operations.OperationProcessor;
 
 

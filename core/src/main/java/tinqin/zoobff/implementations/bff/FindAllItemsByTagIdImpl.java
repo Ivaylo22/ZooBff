@@ -1,12 +1,12 @@
-package tinqin.zoobff;
+package tinqin.zoobff.implementations.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import tinqin.zoobff.model.FullItemInfoDto;
-import tinqin.zoobff.model.finditemsbytagid.FindAllItemsByTagId;
-import tinqin.zoobff.model.finditemsbytagid.FindAllItemsByTagIdRequest;
-import tinqin.zoobff.model.finditemsbytagid.FindAllItemsByTagIdResponse;
+import tinqin.zoobff.data.bff.finditemsbytagid.FullItemInfoDto;
+import tinqin.zoobff.data.bff.finditemsbytagid.FindAllItemsByTagId;
+import tinqin.zoobff.data.bff.FindAllItemsByTagIdRequest;
+import tinqin.zoobff.data.bff.finditemsbytagid.FindAllItemsByTagIdResponse;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.data.Storage;
 import tinqin.zoostore.ZooStoreRestClient;
@@ -30,7 +30,7 @@ public class FindAllItemsByTagIdImpl implements FindAllItemsByTagId {
         FindAllItemsByTagIdResponse response = new FindAllItemsByTagIdResponse();
         List<FullItemInfoDto> itemsInfo = new ArrayList<>();
 
-        List<Item> items = storeRestClient.getItemsByTagId(tagId).getItems().getContent();
+        List<Item> items = storeRestClient.getItemsByTagId(tagId).getItems();
 
 
         for (Item item: items) {
@@ -44,6 +44,7 @@ public class FindAllItemsByTagIdImpl implements FindAllItemsByTagId {
             Storage storage = modelMapper.map(storageRestClient.getInfoByItemId(itemId), Storage.class);
 
             FullItemInfoDto itemInfo = new FullItemInfoDto();
+
 
             itemInfo.setItem(currentItem);
             itemInfo.setPrice(storage.getPrice());

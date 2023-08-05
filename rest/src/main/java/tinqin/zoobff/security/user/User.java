@@ -1,15 +1,13 @@
 package tinqin.zoobff.security.user;
 
+import jakarta.persistence.*;
+import tinqin.zoobff.data.Cart;
 import tinqin.zoobff.security.token.Token;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +31,26 @@ public class User implements UserDetails {
   private String lastname;
   private String email;
   private String password;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Set<Cart> getCartItems() {
+    return cartItems;
+  }
+
+  public void setCartItems(Set<Cart> cartItems) {
+    this.cartItems = cartItems;
+  }
+
+  @OneToMany
+  @JoinColumn(name = "userId")
+  Set<Cart> cartItems;
 
   @Enumerated(EnumType.STRING)
   private Role role;

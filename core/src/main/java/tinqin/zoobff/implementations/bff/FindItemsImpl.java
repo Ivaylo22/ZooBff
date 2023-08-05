@@ -1,10 +1,10 @@
-package tinqin.zoobff;
+package tinqin.zoobff.implementations.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tinqin.zoobff.model.finditems.FindItems;
-import tinqin.zoobff.model.finditems.FindItemsRequest;
-import tinqin.zoobff.model.finditems.FindItemsResponse;
+import tinqin.zoobff.data.bff.finditems.FindItems;
+import tinqin.zoobff.data.bff.finditems.FindItemsRequest;
+import tinqin.zoobff.data.bff.finditems.FindItemsResponse;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.model.getstorage.GetStorageResponse;
 import tinqin.zoostore.ZooStoreRestClient;

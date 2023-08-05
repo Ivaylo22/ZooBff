@@ -1,16 +1,15 @@
-package tinqin.zoobff.model.finditemsbytagid;
+package tinqin.zoobff.data.bff.finditemsbytagid;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tinqin.zoobff.model.FullItemInfoDto;
 import tinqin.zoobff.operations.OperationResult;
-import tinqin.zoostorage.model.getinfobyid.GetInfoByIdResponse;
-import tinqin.zoostore.data.Item;
 
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FindAllItemsByTagIdResponse implements OperationResult {

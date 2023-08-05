@@ -1,15 +1,15 @@
-package tinqin.zoobff.model.finditems;
+package tinqin.zoobff.data.bff.salecart;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import tinqin.zoobff.operations.OperationInput;
 
-import java.util.UUID;
-
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindItemsRequest implements OperationInput {
-    private UUID storageId;
+public class SellCartRequest implements OperationInput {
+    private Integer userId;
 }
