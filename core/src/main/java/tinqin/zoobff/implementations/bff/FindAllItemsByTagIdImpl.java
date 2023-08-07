@@ -16,6 +16,7 @@ import tinqin.zoostore.model.item.getitem.GetItemResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,32 +29,29 @@ public class FindAllItemsByTagIdImpl implements FindAllItemsByTagId {
     public FindAllItemsByTagIdResponse process(FindAllItemsByTagIdRequest input) {
         UUID tagId = input.getTagId();
         FindAllItemsByTagIdResponse response = new FindAllItemsByTagIdResponse();
-        List<FullItemInfoDto> itemsInfo = new ArrayList<>();
 
-        List<Item> items = storeRestClient.getItemsByTagId(tagId).getItems();
+        List<FullItemInfoDto> itemsInfo = storeRestClient.getItemsByTagId(tagId).getItems().stream()
+                .filter(item -> storageRestClient.checkStorageByItemId(item.getId()).getIsInStorage())
+                .map(item -> {
+                    GetItemResponse itemResponse = storeRestClient.getItemById(item.getId());
+                    Item currentItem = modelMapper.map(itemResponse, Item.class);
+                    Storage storage = modelMapper.map(storageRestClient.getInfoByItemId(item.getId()), Storage.class);
 
+                    FullItemInfoDto itemInfo = new FullItemInfoDto();
+                    itemInfo.setItem(currentItem);
+                    itemInfo.setPrice(storage.getPrice());
+                    itemInfo.setQuantity(storage.getQuantity());
+                    return itemInfo;
+                })
+                .collect(Collectors.toList());
 
-        for (Item item: items) {
-            UUID itemId = item.getId();
-            if(!storageRestClient.checkStorageByItemId(itemId).getIsInStorage()) {
-                continue;
-            }
-            GetItemResponse itemResponse = storeRestClient.getItemById(itemId);
-            Item currentItem = modelMapper.map(itemResponse, Item.class);
-
-            Storage storage = modelMapper.map(storageRestClient.getInfoByItemId(itemId), Storage.class);
-
-            FullItemInfoDto itemInfo = new FullItemInfoDto();
-
-
-            itemInfo.setItem(currentItem);
-            itemInfo.setPrice(storage.getPrice());
-            itemInfo.setQuantity(storage.getQuantity());
-
-            itemsInfo.add(itemInfo);
-        }
         response.setItems(itemsInfo);
-
         return response;
     }
+
+
+
+
+
+
 }

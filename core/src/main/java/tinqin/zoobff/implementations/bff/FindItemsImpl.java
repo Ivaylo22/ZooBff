@@ -24,7 +24,6 @@ public class FindItemsImpl implements FindItems {
         GetStorageResponse storage = storageRestClient.getStorage(storageId);
 
         UUID itemId = storage.getItemId();
-        GetItemResponse item = storeRestClient.getItemById(itemId);
 
         FindItemsResponse response = new FindItemsResponse();
         response.setStorageId(storageId);

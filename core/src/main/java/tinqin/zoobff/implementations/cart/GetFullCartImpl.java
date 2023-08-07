@@ -18,6 +18,7 @@ import tinqin.zoostore.model.item.getitem.GetItemResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,27 +32,30 @@ public class GetFullCartImpl implements GetFullCart {
     public GetFullCartResponse process(GetFullCartRequest input) {
         Integer userId = input.getUserId();
         List<Cart> cartList = cartRepository.getAllByUserId(userId);
-        List<FullItemInfoDto> itemsInfo = new ArrayList<>();
-        double finalPrice = 0.0;
 
-        for (Cart cart: cartList) {
-            UUID itemId = cart.getItemId();
+        List<FullItemInfoDto> itemsInfo = cartList.stream()
+                .map(cart -> {
+                    UUID itemId = cart.getItemId();
+                    GetItemResponse itemResponse = storeRestClient.getItemById(itemId);
+                    Item currentItem = modelMapper.map(itemResponse, Item.class);
+                    Storage storage = modelMapper.map(storageRestClient.getInfoByItemId(itemId), Storage.class);
 
-            GetItemResponse itemResponse = storeRestClient.getItemById(itemId);
-            Item currentItem = modelMapper.map(itemResponse, Item.class);
+                    FullItemInfoDto itemInfo = new FullItemInfoDto();
+                    itemInfo.setItem(currentItem);
+                    itemInfo.setPrice(storage.getPrice());
+                    itemInfo.setQuantity(cart.getQuantity());
+                    return itemInfo;
+                })
+                .collect(Collectors.toList());
 
-            Storage storage = modelMapper.map(storageRestClient.getInfoByItemId(itemId), Storage.class);
+        double finalPrice = cartList.stream()
+                .mapToDouble(cart -> {
+                    UUID itemId = cart.getItemId();
+                    Storage storage = modelMapper.map(storageRestClient.getInfoByItemId(itemId), Storage.class);
+                    return cart.getQuantity() * storage.getPrice();
+                })
+                .sum();
 
-            FullItemInfoDto itemInfo = new FullItemInfoDto();
-
-            itemInfo.setItem(currentItem);
-            itemInfo.setPrice(storage.getPrice());
-            itemInfo.setQuantity(cart.getQuantity());
-
-            finalPrice += cart.getQuantity() * storage.getPrice();
-
-            itemsInfo.add(itemInfo);
-        }
         return GetFullCartResponse.builder()
                 .items(itemsInfo)
                 .userId(userId)
