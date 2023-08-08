@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>tinqin.zoobff</groupId>
   <artifactId>ZooBff</artifactId>
-  <version>0.1.9-SNAPSHOT</version>
+  <version>0.2.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <licenses>
     <license>
@@ -87,8 +87,8 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
-          <groupId>com.google.protobuf</groupId>
           <artifactId>protobuf-java</artifactId>
+          <groupId>com.google.protobuf</groupId>
         </exclusion>
       </exclusions>
     </dependency>

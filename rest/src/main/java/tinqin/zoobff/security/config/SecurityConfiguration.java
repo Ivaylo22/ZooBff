@@ -45,6 +45,7 @@ public class SecurityConfiguration {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
         .csrf(csrf -> csrf.disable())
+        .cors(c -> c.disable())
         .authorizeHttpRequests()
         .requestMatchers(
                 "/api/v1/auth/**",
@@ -58,7 +59,8 @@ public class SecurityConfiguration {
                 "/swagger-ui/**",
                 "/webjars/**",
                 "/swagger-ui.html",
-                "/bff/**"
+                "/bff/**",
+                "/cart/**"
         )
           .permitAll()
 

@@ -6,6 +6,8 @@ import tinqin.zoobff.data.Cart;
 import tinqin.zoobff.data.bff.salecart.SellCart;
 import tinqin.zoobff.data.bff.salecart.SellCartRequest;
 import tinqin.zoobff.data.bff.salecart.SellCartResponse;
+import tinqin.zoobff.data.cart.emptycart.EmptyCart;
+import tinqin.zoobff.data.cart.emptycart.EmptyCartRequest;
 import tinqin.zoobff.repository.CartRepository;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.model.addsale.AddSaleRequest;
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 public class SellCartImpl implements SellCart {
     private final ZooStorageRestClient storageRestClient;
     private final CartRepository cartRepository;
+    private final EmptyCart emptyCart;
 
     @Override
     public SellCartResponse process(SellCartRequest input) {
@@ -27,16 +30,17 @@ public class SellCartImpl implements SellCart {
         List<Cart> carts = cartRepository.getAllByUserId(userId);
 
         Map<UUID, Integer> items = carts.stream()
-                .collect(Collectors.toMap(Cart::getItemId, Cart::getQuantity));
+                .collect(Collectors.toMap(Cart::getItemId, Cart::getQuantity, Integer::sum));
 
-        AddSaleRequest request = AddSaleRequest
-                .builder()
-                .items(items)
-                .userId(userId)
-                .build();
+
+        AddSaleRequest request = new AddSaleRequest();
+        request.setItems(items);
+        request.setUserId(userId);
 
         storageRestClient.addSale(request);
-        cartRepository.removeAllByUserId(userId);
+
+        EmptyCartRequest sellRequest = EmptyCartRequest.builder().userId(userId).build();
+        emptyCart.process(sellRequest);
 
         return new SellCartResponse();
     }

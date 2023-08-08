@@ -15,7 +15,7 @@ import tinqin.zoostore.ZooStoreRestClient;
 public class RestExportClientFactory {
     @Bean
     public ZooStoreRestClient getMyRestExportClient() {
-        final ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         return Feign.builder()
                 .encoder(new JacksonEncoder(objectMapper))
@@ -23,9 +23,10 @@ public class RestExportClientFactory {
                 .target(ZooStoreRestClient.class, "http://localhost:8080");
     }
 
-    @Bean
+    @Bean(name = "StorageApiClient")
     public ZooStorageRestClient getStorageClient() {
-        final ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
 
         return Feign.builder()
                 .encoder(new JacksonEncoder(objectMapper))

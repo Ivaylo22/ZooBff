@@ -30,24 +30,11 @@ public class CartController {
     private final AddToCart addToCart;
     private final RemoveFromCart removeFromCart;
     private final EmptyCart emptyCart;
-    private final SellCart sellCart;
 
-    @Operation(summary = "Sell items from cart", description = "You delete the whole cart")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully sold"),
-    })
-    @DeleteMapping("/saleCart/{userId}")
-    public ResponseEntity<SellCartResponse> sellCart(@PathVariable Integer userId) {
-        SellCartRequest request = SellCartRequest.builder().userId(userId).build();
-        SellCartResponse response = sellCart.process(request);
-
-        return ResponseEntity.ok(response);
-    }
 
     @Operation(summary = "Get cart by user id", description = "Get complete cart information by user's id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
-            @ApiResponse(responseCode = "401", description = "Item/Storage not found")
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved")
     })
     @GetMapping("/getCart/{userId}")
     public ResponseEntity<GetFullCartResponse> getCart(@RequestParam Integer userId) {

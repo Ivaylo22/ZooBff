@@ -10,8 +10,6 @@ import tinqin.zoobff.data.cart.addtocart.AddToCartResponse;
 import tinqin.zoobff.repository.CartRepository;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.data.Storage;
-import tinqin.zoostore.data.Item;
-import tinqin.zoostore.model.item.getitem.GetItemResponse;
 
 import java.util.UUID;
 

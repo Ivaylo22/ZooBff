@@ -4,14 +4,13 @@ package tinqin.zoobff.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import tinqin.zoobff.data.Cart;
-import tinqin.zoostore.data.Item;
 
 import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface CartRepository  extends JpaRepository<Cart, UUID> {
+public interface CartRepository extends JpaRepository<Cart, UUID> {
     List<Cart> getAllByUserId(Integer userId);
     Cart getByItemId(UUID itemId);
-    void removeAllByUserId(Integer userId);
+    void deleteById(UUID cartId);
 }
