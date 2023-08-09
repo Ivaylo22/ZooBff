@@ -6,6 +6,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tinqin.zoobff.data.bff.checkfordiscount.CheckDiscount;
+import tinqin.zoobff.data.bff.checkfordiscount.CheckDiscountRequest;
+import tinqin.zoobff.data.bff.checkfordiscount.CheckDiscountResponse;
 import tinqin.zoobff.data.bff.finditems.FindItems;
 import tinqin.zoobff.data.bff.finditems.FindItemsRequest;
 import tinqin.zoobff.data.bff.finditems.FindItemsResponse;
@@ -15,9 +18,13 @@ import tinqin.zoobff.data.bff.finditemsbytagid.FindAllItemsByTagIdResponse;
 import tinqin.zoobff.data.bff.salecart.SellCart;
 import tinqin.zoobff.data.bff.salecart.SellCartRequest;
 import tinqin.zoobff.data.bff.salecart.SellCartResponse;
+import tinqin.zoobff.data.cart.emptycart.EmptyCartRequest;
+import tinqin.zoobff.data.cart.emptycart.EmptyCartResponse;
 import tinqin.zoobff.data.cart.getfullcart.GetFullCartRequest;
 import tinqin.zoobff.data.cart.getfullcart.GetFullCartResponse;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -27,6 +34,19 @@ public class BffController {
     private final FindItems findItems;
     private final FindAllItemsByTagId getItemsByTagId;
     private final SellCart sellCart;
+    private final CheckDiscount checkDiscount;
+
+    @Operation(summary = "Check for discount", description = "Check which tag has discount today")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully emptied"),
+    })
+    @GetMapping("/checkDiscount")
+    public ResponseEntity<CheckDiscountResponse> checkDiscount() {
+        CheckDiscountRequest request = new CheckDiscountRequest();
+        CheckDiscountResponse response = checkDiscount.process(request);
+
+        return ResponseEntity.ok(response);
+    }
 
     @Operation(summary = "Sell items from cart", description = "You delete the whole cart")
     @ApiResponses(value = {

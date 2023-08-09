@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>tinqin.zoobff</groupId>
   <artifactId>rest</artifactId>
-  <version>0.2.4-SNAPSHOT</version>
+  <version>0.2.9-SNAPSHOT</version>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -15,19 +15,19 @@
     <dependency>
       <groupId>tinqin.zoobff</groupId>
       <artifactId>api</artifactId>
-      <version>0.2.4-SNAPSHOT</version>
+      <version>0.2.9-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>tinqin.zoobff</groupId>
       <artifactId>core</artifactId>
-      <version>0.2.4-SNAPSHOT</version>
+      <version>0.2.9-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>tinqin.zoobff</groupId>
       <artifactId>domain</artifactId>
-      <version>0.2.4-SNAPSHOT</version>
+      <version>0.2.9-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -58,6 +58,12 @@
       <groupId>io.springfox</groupId>
       <artifactId>springfox-boot-starter</artifactId>
       <version>3.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <version>3.1.2</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -134,8 +140,8 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
-          <artifactId>protobuf-java</artifactId>
           <groupId>com.google.protobuf</groupId>
+          <artifactId>protobuf-java</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
