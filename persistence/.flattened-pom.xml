@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>tinqin.zoobff</groupId>
   <artifactId>persistence</artifactId>
-  <version>0.2.9-SNAPSHOT</version>
+  <version>0.3.1-SNAPSHOT</version>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -15,7 +15,7 @@
     <dependency>
       <groupId>tinqin.zoostore</groupId>
       <artifactId>persistence</artifactId>
-      <version>0.2.9-SNAPSHOT</version>
+      <version>0.3.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
