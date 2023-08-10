@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.bff;
+package tinqin.zoobff.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class GetAllItemsByTitleImpl implements GetAllItemsByTitle {
+public class GetAllItemsByTitleOperation implements GetAllItemsByTitle {
     private final ZooStoreRestClient storeRestClient;
     private final ZooStorageRestClient storageRestClient;
     private final ModelMapper modelMapper;

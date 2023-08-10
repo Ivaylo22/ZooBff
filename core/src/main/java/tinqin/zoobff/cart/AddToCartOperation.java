@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.cart;
+package tinqin.zoobff.cart;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class AddToCartImpl implements AddToCart {
+public class AddToCartOperation implements AddToCart {
     private final CartRepository cartRepository;
     private final ModelMapper modelMapper;
     private final ZooStorageRestClient storageRestClient;

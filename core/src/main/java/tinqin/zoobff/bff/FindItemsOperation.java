@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.bff;
+package tinqin.zoobff.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,14 +8,12 @@ import tinqin.zoobff.data.bff.finditems.FindItemsResponse;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.model.getstorage.GetStorageRequest;
 import tinqin.zoostorage.model.getstorage.GetStorageResponse;
-import tinqin.zoostore.ZooStoreRestClient;
-import tinqin.zoostore.model.item.getitem.GetItemResponse;
 
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class FindItemsImpl implements FindItems {
+public class FindItemsOperation implements FindItems {
     private final ZooStorageRestClient storageRestClient;
 
     @Override

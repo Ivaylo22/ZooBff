@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.cart;
+package tinqin.zoobff.cart;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EmptyCartImpl implements EmptyCart {
+public class EmptyCartOperation implements EmptyCart {
     private final CartRepository cartRepository;
     @Override
     public EmptyCartResponse process(EmptyCartRequest input) {

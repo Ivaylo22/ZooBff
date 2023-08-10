@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.bff;
+package tinqin.zoobff.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -13,14 +13,13 @@ import tinqin.zoostore.ZooStoreRestClient;
 import tinqin.zoostore.data.Item;
 import tinqin.zoostore.model.item.getitem.GetItemResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class FindAllItemsByTagIdImpl implements FindAllItemsByTagId {
+public class FindAllItemsByTagIdOperation implements FindAllItemsByTagId {
     private final ZooStoreRestClient storeRestClient;
     private final ZooStorageRestClient storageRestClient;
     private final ModelMapper modelMapper;

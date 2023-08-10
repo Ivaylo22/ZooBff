@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.cart;
+package tinqin.zoobff.cart;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class GetFullCartImpl implements GetFullCart {
+public class GetFullCartOperation implements GetFullCart {
     private final ZooStoreRestClient storeRestClient;
     private final ZooStorageRestClient storageRestClient;
     private final CartRepository cartRepository;

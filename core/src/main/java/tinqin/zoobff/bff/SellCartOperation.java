@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.bff;
+package tinqin.zoobff.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,6 @@ import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.model.addsale.AddSaleRequest;
 import tinqin.zoostore.data.Item;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -24,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class SellCartImpl implements SellCart {
+public class SellCartOperation implements SellCart {
     private final ZooStorageRestClient storageRestClient;
     private final CartRepository cartRepository;
     private final EmptyCart emptyCart;

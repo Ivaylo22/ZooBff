@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.cart;
+package tinqin.zoobff.cart;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class RemoveFromCartImpl implements RemoveFromCart {
+public class RemoveFromCartOperation implements RemoveFromCart {
     private final CartRepository cartRepository;
 
     @Override

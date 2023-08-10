@@ -1,4 +1,4 @@
-package tinqin.zoobff.implementations.bff;
+package tinqin.zoobff.bff;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -7,7 +7,6 @@ import tinqin.zoobff.data.bff.checkfordiscount.CheckDiscount;
 import tinqin.zoobff.data.bff.checkfordiscount.CheckDiscountRequest;
 import tinqin.zoobff.data.bff.checkfordiscount.CheckDiscountResponse;
 import tinqin.zoostorage.ZooStorageRestClient;
-import tinqin.zoostorage.data.Storage;
 import tinqin.zoostorage.model.checkstoragebyitem.CheckStorageByItemResponse;
 import tinqin.zoostore.ZooStoreRestClient;
 import tinqin.zoostore.data.Item;
@@ -19,7 +18,7 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-public class CheckDiscountImpl implements CheckDiscount {
+public class CheckDiscountOperation implements CheckDiscount {
     private final ZooStoreRestClient storeRestClient;
     private final ZooStorageRestClient storageRestClient;
     private final ModelMapper modelMapper;
