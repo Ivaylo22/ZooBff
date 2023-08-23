@@ -6,21 +6,18 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tinqin.zoobff.data.bff.salecart.SellCart;
-import tinqin.zoobff.data.bff.salecart.SellCartRequest;
-import tinqin.zoobff.data.bff.salecart.SellCartResponse;
-import tinqin.zoobff.data.cart.addtocart.AddToCart;
-import tinqin.zoobff.data.cart.addtocart.AddToCartRequest;
-import tinqin.zoobff.data.cart.addtocart.AddToCartResponse;
-import tinqin.zoobff.data.cart.emptycart.EmptyCart;
-import tinqin.zoobff.data.cart.emptycart.EmptyCartRequest;
-import tinqin.zoobff.data.cart.emptycart.EmptyCartResponse;
-import tinqin.zoobff.data.cart.getfullcart.GetFullCart;
-import tinqin.zoobff.data.cart.getfullcart.GetFullCartRequest;
-import tinqin.zoobff.data.cart.getfullcart.GetFullCartResponse;
-import tinqin.zoobff.data.cart.removefromcart.RemoveFromCart;
-import tinqin.zoobff.data.cart.removefromcart.RemoveFromCartRequest;
-import tinqin.zoobff.data.cart.removefromcart.RemoveFromCartResponse;
+import tinqin.zoobff.model.cart.addtocart.AddToCart;
+import tinqin.zoobff.model.cart.addtocart.AddToCartRequest;
+import tinqin.zoobff.model.cart.addtocart.AddToCartResponse;
+import tinqin.zoobff.model.cart.emptycart.EmptyCart;
+import tinqin.zoobff.model.cart.emptycart.EmptyCartRequest;
+import tinqin.zoobff.model.cart.emptycart.EmptyCartResponse;
+import tinqin.zoobff.model.cart.getfullcart.GetFullCart;
+import tinqin.zoobff.model.cart.getfullcart.GetFullCartRequest;
+import tinqin.zoobff.model.cart.getfullcart.GetFullCartResponse;
+import tinqin.zoobff.model.cart.removefromcart.RemoveFromCart;
+import tinqin.zoobff.model.cart.removefromcart.RemoveFromCartRequest;
+import tinqin.zoobff.model.cart.removefromcart.RemoveFromCartResponse;
 
 @RestController
 @RequestMapping("/cart")

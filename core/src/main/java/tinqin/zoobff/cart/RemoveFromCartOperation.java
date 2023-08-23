@@ -3,9 +3,9 @@ package tinqin.zoobff.cart;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tinqin.zoobff.data.Cart;
-import tinqin.zoobff.data.cart.removefromcart.RemoveFromCart;
-import tinqin.zoobff.data.cart.removefromcart.RemoveFromCartRequest;
-import tinqin.zoobff.data.cart.removefromcart.RemoveFromCartResponse;
+import tinqin.zoobff.model.cart.removefromcart.RemoveFromCart;
+import tinqin.zoobff.model.cart.removefromcart.RemoveFromCartRequest;
+import tinqin.zoobff.model.cart.removefromcart.RemoveFromCartResponse;
 import tinqin.zoobff.repository.CartRepository;
 
 import java.util.UUID;

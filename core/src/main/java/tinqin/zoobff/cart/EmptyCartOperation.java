@@ -3,9 +3,9 @@ package tinqin.zoobff.cart;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tinqin.zoobff.data.Cart;
-import tinqin.zoobff.data.cart.emptycart.EmptyCart;
-import tinqin.zoobff.data.cart.emptycart.EmptyCartRequest;
-import tinqin.zoobff.data.cart.emptycart.EmptyCartResponse;
+import tinqin.zoobff.model.cart.emptycart.EmptyCart;
+import tinqin.zoobff.model.cart.emptycart.EmptyCartRequest;
+import tinqin.zoobff.model.cart.emptycart.EmptyCartResponse;
 import tinqin.zoobff.repository.CartRepository;
 
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmptyCartOperation implements EmptyCart {
     private final CartRepository cartRepository;
+
     @Override
     public EmptyCartResponse process(EmptyCartRequest input) {
         Integer userId = input.getUserId();

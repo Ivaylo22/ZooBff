@@ -3,10 +3,10 @@ package tinqin.zoobff.bff;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import tinqin.zoobff.data.bff.finditemsbytagid.FullItemInfoDto;
-import tinqin.zoobff.data.bff.getallitemsbytitle.GetAllItemsByTitle;
-import tinqin.zoobff.data.bff.getallitemsbytitle.GetAllItemsByTitleRequest;
-import tinqin.zoobff.data.bff.getallitemsbytitle.GetAllItemsByTitleResponse;
+import tinqin.zoobff.model.bff.finditemsbytagid.FullItemInfoDto;
+import tinqin.zoobff.model.bff.getallitemsbytitle.GetAllItemsByTitle;
+import tinqin.zoobff.model.bff.getallitemsbytitle.GetAllItemsByTitleRequest;
+import tinqin.zoobff.model.bff.getallitemsbytitle.GetAllItemsByTitleResponse;
 import tinqin.zoostorage.ZooStorageRestClient;
 import tinqin.zoostorage.data.Storage;
 import tinqin.zoostorage.model.getinfobyid.GetInfoByIdResponse;
@@ -38,8 +38,7 @@ public class GetAllItemsByTitleOperation implements GetAllItemsByTitle {
                     GetInfoByIdResponse storageDto = storageRestClient.getInfoByItemId(id);
                     Storage storage = Storage.builder()
                             .itemId(storageDto.getItemId())
-                            .quantity(storageDto.getQuantity())
-                            .price(storageDto.getPrice())
+                            .quantity(storageDto.getTotalQuantity())
                             .build();
                     return storage;
                 })

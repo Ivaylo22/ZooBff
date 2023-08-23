@@ -2,9 +2,7 @@
 
     import com.fasterxml.jackson.databind.ObjectMapper;
     import org.junit.jupiter.api.AfterEach;
-    import org.junit.jupiter.api.BeforeEach;
     import org.junit.jupiter.api.Test;
-    import org.modelmapper.ModelMapper;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
     import org.springframework.boot.test.context.SpringBootTest;
@@ -12,13 +10,10 @@
     import org.springframework.http.MediaType;
     import org.springframework.test.web.servlet.MockMvc;
     import tinqin.zoobff.data.Cart;
-    import tinqin.zoobff.data.cart.addtocart.AddToCartRequest;
-    import tinqin.zoobff.data.cart.emptycart.EmptyCartRequest;
-    import tinqin.zoobff.data.cart.removefromcart.RemoveFromCartRequest;
-    import tinqin.zoobff.data.cart.removefromcart.RemoveFromCartResponse;
+    import tinqin.zoobff.model.cart.addtocart.AddToCartRequest;
+    import tinqin.zoobff.model.cart.emptycart.EmptyCartRequest;
     import tinqin.zoobff.repository.CartRepository;
     import tinqin.zoostorage.ZooStorageRestClient;
-    import tinqin.zoostorage.data.Storage;
     import tinqin.zoostorage.model.getinfobyid.GetInfoByIdResponse;
 
 
@@ -91,7 +86,6 @@
             cart.setQuantity(2);
 
             GetInfoByIdResponse storage = new GetInfoByIdResponse();
-            storage.setPrice(50.0);
             when(storageRestClient.getInfoByItemId(cart.getItemId())).thenReturn(storage);
 
             AddToCartRequest request = AddToCartRequest.builder()
@@ -108,8 +102,7 @@
                     )
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$['quantity']").value(cart.getQuantity()))
-                    .andExpect(jsonPath("$['finalPrice']").value(cart.getQuantity() * storage.getPrice()));
+                    .andExpect(jsonPath("$['quantity']").value(cart.getQuantity()));
 
         }
 

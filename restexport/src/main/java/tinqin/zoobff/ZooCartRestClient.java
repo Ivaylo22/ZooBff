@@ -3,10 +3,7 @@ package tinqin.zoobff;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import tinqin.zoobff.data.cart.getfullcart.GetFullCartResponse;
+import tinqin.zoobff.model.cart.getfullcart.GetFullCartResponse;
 
 @Headers({"Content-Type: application/json"})
 public interface ZooCartRestClient {
