@@ -1,6 +1,7 @@
 package tinqin.zoobff.security.token;
 
 
+import org.springframework.data.redis.core.RedisHash;
 import tinqin.zoobff.security.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,12 +17,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Token {
+//@RedisHash("Token")
+public class Token implements Serializable {
 
   @Id
   @GeneratedValue

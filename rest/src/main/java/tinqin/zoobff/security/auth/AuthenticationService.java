@@ -31,6 +31,10 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
+  public void logout(User user) {
+    repository.clearUserTokens(user);
+  }
+
   public AuthenticationResponse register(RegisterRequest request) {
     var user = User.builder()
         .firstname(request.getFirstname())

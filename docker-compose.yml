@@ -51,8 +51,8 @@ services:
       - DATABASE_PORT=3306
       - SERVER_PORT=8082
       - DATABASE_NAME=zoobff
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - REDIS_HOST=redis  # Use the service name
+      - REDIS_PORT=6379   # Default Redis port
     depends_on:
       - db
       - app1
@@ -60,10 +60,10 @@ services:
 
   app4:
     image: zoobff:latest
-    container_name: zoobff
+    container_name: zoobff_2
     restart: on-failure
     ports:
-      - "8082:8082"
+      - "8083:8083"
     environment:
       - DATABASE_HOST=db
       - DATABASE_PORT=3306
@@ -78,7 +78,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: redis_container
+    container_name: redis
     ports:
       - "6379:6379"
 

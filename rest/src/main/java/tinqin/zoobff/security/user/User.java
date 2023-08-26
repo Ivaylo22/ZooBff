@@ -1,9 +1,12 @@
 package tinqin.zoobff.security.user;
 
 import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
 import tinqin.zoobff.data.Cart;
 import tinqin.zoobff.security.token.Token;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +24,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
-public class User implements UserDetails {
+//@RedisHash("User")
+public class User implements UserDetails, Serializable {
 
   @Id
   @GeneratedValue
@@ -39,17 +43,6 @@ public class User implements UserDetails {
     this.id = id;
   }
 
-  public Set<Cart> getCartItems() {
-    return cartItems;
-  }
-
-  public void setCartItems(Set<Cart> cartItems) {
-    this.cartItems = cartItems;
-  }
-
-  @OneToMany
-  @JoinColumn(name = "userId")
-  Set<Cart> cartItems;
 
   @Enumerated(EnumType.STRING)
   private Role role;

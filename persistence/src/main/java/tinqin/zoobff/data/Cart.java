@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.springframework.data.redis.core.RedisHash;
 import tinqin.zoostore.data.Item;
 
 import java.util.UUID;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name="carts")
+@RedisHash("Cart")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
