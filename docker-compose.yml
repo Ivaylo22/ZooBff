@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:oracle
+    container_name: database_container
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  app1:
+    image: zoostore:latest
+    container_name: zoostore
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=3306
+      - SERVER_PORT=8080
+      - DATABASE_NAME=zoostore
+    depends_on:
+      - db
+
+  app2:
+    image: zoostorage:latest
+    container_name: zoostorage
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=3306
+      - SERVER_PORT=8081
+      - DATABASE_NAME=zoostorage
+    depends_on:
+      - db
+      - app1
+
+  app3:
+    image: zoobff:latest
+    container_name: zoobff
+    restart: on-failure
+    ports:
+      - "8082:8082"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=3306
+      - SERVER_PORT=8082
+      - DATABASE_NAME=zoobff
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - db
+      - app1
+      - app2
+
+  app4:
+    image: zoobff:latest
+    container_name: zoobff
+    restart: on-failure
+    ports:
+      - "8082:8082"
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=3306
+      - SERVER_PORT=8083
+      - DATABASE_NAME=zoobff
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - db
+      - app1
+      - app2
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+
+volumes:
+  todo-mysql-data:
+
+

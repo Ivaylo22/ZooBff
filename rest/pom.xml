@@ -75,13 +75,14 @@
     </dependencies>
 
     <build>
-        <finalName>tinqin.zoobff</finalName>
+        <finalName>tinqin-zoobff</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.1.1</version>
                 <configuration>
-                    <mainClass>tinqin.zoobff.ZooBffApplication.class</mainClass>
+                    <mainClass>tinqin.zoobff.ZooBffApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

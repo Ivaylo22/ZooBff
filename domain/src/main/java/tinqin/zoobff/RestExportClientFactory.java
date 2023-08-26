@@ -17,7 +17,7 @@ public class RestExportClientFactory {
     @Value("${zoostore.url}")
     private String zoostoreUrl;
 
-    @Value("${zoostorаgе.url}")
+    @Value("${zoostorage.url}")
     private String zoostorageUrl;
 
     @Bean
